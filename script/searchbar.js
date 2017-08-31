@@ -12,6 +12,7 @@
         this.btnText = options["btnText"];
         _this = this;
         this.init();
+        
     }
 
     Plugin.prototype.init = function() {
