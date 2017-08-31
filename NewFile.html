@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://df049m:7001/GrtWeb/grtq_trace.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Simple Paging Grid - Basic Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- styles -->
+    <link href="./Simple Paging Grid - Basic Example_files/bootstrap.min.css" rel="stylesheet">	
+    <script type="text/javascript" src="./Simple Paging Grid - Basic Example_files/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./Simple Paging Grid - Basic Example_files/mustache.min.js"></script>
+    <script type="text/javascript" src="./Simple Paging Grid - Basic Example_files/simplePagingGrid-0.1.js"></script>
+	<script type="text/javascript"> 
+        $(document).ready(function () {
+        	$.getJSON("http://df049m:7001/RtServer/jsonServlet?form=grtq_trace&block=blk_head",
+        			  function(data){
+        			  	$("#exampleGrid").simplePagingGrid(data);
+        			  });
+            $.getJSON("http://df049m:7001/RtServer/jsonServlet?form=grtq_trace&block=blk_parts1",
+        			  function(data){
+        			  	$("#parts1").simplePagingGrid(data);
+        			  });
+        	$.getJSON("http://df049m:7001/RtServer/jsonServlet?form=grtq_trace&block=blk_parts2",
+        			  function(data){
+        			  	$("#parts2").simplePagingGrid(data);
+        			  });
+		    });
+	</script>
+</head>
+<body>
+	<header>
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="http://df049m:7001/GrtWeb/grtq_trace.html#">Simple Paging Grid - Basic Example</a>
+          </div>
+        </div>
+    </header>
+    <section id="main">
+		<div class="container">
+			<div class="row">
+				<div id="exampleGrid"><table class="table"><thead><tr><th width="10">鞋型</th><th width="10">制令</th><th width="10">总轮次</th><th width="10">针车完成轮次</th><th width="20">派工总双数</th><th width="30">已制量</th><th width="30">未制量</th></tr></thead><tbody><tr><td>308497 006 00</td><td>S7D12;S7D14</td><td>116</td><td>111</td><td>17604</td><td>16958</td><td>646</td></tr><tr><td>308497 006 00</td><td>S7D25</td><td>34</td><td>0</td><td>8652</td><td>0</td><td>8652</td></tr></tbody></table></div>
+			</div>
+			<div class="row">
+				<div id="parts1"> </div>
+
+			</div>
+			<div class="row">
+				<div id="parts2"> <table class="table"><thead><tr><th width="10">线别</th><th width="10">鞋型</th><th width="10">部位</th><th width="10">已完成轮次</th></tr></thead><tbody><tr><td>3A</td><td>308497 006 00</td><td>外后蹄</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>外后蹄补强</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>鞋头</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>鞋羽</td><td>115</td></tr><tr><td>3A</td><td>308497 006 00</td><td>鞋羽内里</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>鞋羽内腰补强</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>鞋羽外腰补强</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>羽饰片</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>茯眼</td><td>116</td></tr><tr><td>3A</td><td>308497 006 00</td><td>茯眼补强</td><td>116</td></tr></tbody></table></div>
+			</div>
+		</div>
+    </section>
+
+
+</body></html>

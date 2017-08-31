@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>裁剪产量看板</title>
+	<!-- styles -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="script/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="script/block.js"></script>
+</head>
+
+<body>
+	<header>
+	</header>
+	<section id="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div id="style" ></div>
+			</div>
+			<div class="row">
+				<div id="part" > </div>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript"> 
+			$(document).ready(function () {
+				$("#style").block({
+					"columnKeys": ["line", "style"],
+					"sql": "Select line,style From grt_prod_style",
+					"displayRows": 3,
+					"columnNames": ["线别", "鞋型"],
+					"rowHeight": 15,
+					"columnWidths": [60, 150],
+					"relations": [{ "childBlock": "part", "filterColumns": ["line", "style"] }]
+				});
+				$("#part").block({
+					"columnKeys": ["line", "style", "part", "min_stk", "max_stk"],
+					"sql": "Select line,style,part,min_stk,max_stk From grt_v_prod_part",
+					"displayRows": 18,
+					"columnNames": ["线别", "鞋型", "鞋部位", "落后预警", "标准库存"],
+					"rowHeight": 15,
+					"columnWidths": [60, 150, 100, 150, 100]
+				});
+
+			});
+		</script>
+
+</body>
+
+</html>
