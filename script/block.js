@@ -18,25 +18,23 @@
         this.init();
     }
 
-    Plugin.prototype.init = function() {
+    Plugin.prototype.init = function () {
         var $elem = $(this.element);
         $elem.addClass(CLASS_BLOCK);
-        this.refreshData();
+        //this.refreshData();
+    }
+    Plugin.prototype.setData = function (data) {
+        _this = this;
+        _this.rows=[];
+        $.each(data, function(index, row) {
+            _this.rows.push(row);
+        });
     }
     //
     Plugin.prototype.refreshData = function () {
-        var _this = this;
-        var json_sql_url = JSON_SERVLET_URL + "?sql=" + _this.sql;
-        $.get(json_sql_url, function (data) {
-            $.each(data, function (index, row) {
-                console.log("get:" + row);
-                _this.rows.push(row);
-            });
-        }).done(function () {
-            $(_this.element).empty();
-            loadTitle(_this, _this.columnNames);
-            loadRows(_this, _this.rows);
-        });
+        $(_this.element).empty();
+        loadTitle(_this, _this.columnNames);
+        loadRows(_this, _this.rows);
     }
 
     //加载标题行
@@ -111,4 +109,4 @@
         });
     };
 
-} (jQuery, window));
+}(jQuery, window));

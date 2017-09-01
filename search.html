@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="script/searchbar.js"></script>
 	<script type="text/javascript" src="script/block.js"></script>
 </head>
-
 <body>
 	<header>
 	</header>
@@ -28,17 +27,17 @@
 			$(document).ready(function(){
 				$("#searchbar").searchbar({
 					"resultListId": "result-list",
-					"url": "http://df049m-v64:7001/RtServer/sql2json" ,
-					"btnText":"查找",
+					"baseUrl": "http://localhost:8080/RtServer/search4json",
+					"btnText":"Search",
+					"pageSize":10,
 					"initText":"请输入关键字"	
 				});
 				$("#result-list").block({
-					"columnKeys": ["line", "style", "part", "min_stk", "max_stk"],
-					"sql": "Select line,style,part,min_stk,max_stk From grt_v_prod_part",
-					"displayRows": 18,
-					"columnNames": ["线别", "鞋型", "鞋部位", "落后预警", "标准库存"],
+					"columnKeys": ["row_id", "content", "row_num"],
+					"displayRows": 10,
+					"columnNames": ["Row Id", "Content", "Row Num"],
 					"rowHeight": 15,
-					"columnWidths": [60, 150, 100, 150, 100]
+					"columnWidths": [60, 500, 60]
 				});
 
 			});

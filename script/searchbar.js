@@ -7,45 +7,39 @@
 
     function Plugin(element, options) {
         this.element = element;
-        this.url = options["url"];
+        this.baseUrl = options["baseUrl"];
         this.resultListId = options["resultListId"];
         this.btnText = options["btnText"];
-        _this = this;
+        this.pageSize = options["pageSize"];
+        var _this = this;
         this.init();
-        
     }
 
-    Plugin.prototype.init = function() {
+    Plugin.prototype.init = function () {
         input = $('<input type="text"/>');
         input.on({
-            mouseenter:function(){},
-            mouseleave:function(){}
+            mouseenter: function () { },
+            mouseleave: function () { }
         });
         input.html(this.initText);
         button = $('<button>');
         button.html(this.btnText);
         button.on({
-            click:function(){
-                blkResultList = $("#"+_this.resultListId).data("block");
-                blkResultList.setData();
-                blkResultList.resultData();
+            click: function () {
+                var blkResultList = $("#" + _this.resultListId).data("block");
+                var keywords = $(_this.element).find("input").val();
+                var from = 1, to = 10;
+                var jsonUrl = _this.baseUrl + "?keywords=" + keywords + "&from=" + from + "&to=" + to;
+                $.get(jsonUrl, function (data) { 
+                    blkResultList.setData(data);
+                    blkResultList.refreshData();
+                })
             }
         });
         $(this.element).append(input);
         $(this.element).append(button);
     }
     //
-
-    Plugin.prototype.onSearch = function(e){
-        blkResultList = $("#"+this.resultListId).data("object");
-        _this = this;
-        $.get(this.url, function (data) {
-            this.resultData = data;
-            });
-        blkResultList.setData(this.resultData);
-        blkResultList.refresh();
-    }
-
 
     $.fn[PLUGIN_NAME] = function (options, command) {
         if (typeof options === STR) {
@@ -58,4 +52,4 @@
         });
     };
 
-} (jQuery, window));
+}(jQuery, window));
