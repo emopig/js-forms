@@ -11,11 +11,12 @@
         this.resultListId = options["resultListId"];
         this.btnText = options["btnText"];
         this.pageSize = options["pageSize"];
-        var _this = this;
         this.init();
     }
 
     Plugin.prototype.init = function () {
+        var _this = this;
+        
         input = $('<input type="text"/>');
         input.on({
             mouseenter: function () { },
